@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const alumnoSchema = mongoose.Schema({
+const profesorSchema = mongoose.Schema({
 
     nombre: String,
     apellido: String,
@@ -14,6 +14,6 @@ const alumnoSchema = mongoose.Schema({
     versionKey: false
 });
 
-const modelAlumno = mongoose.model('Alumno', alumnoSchema);
-module.exports = modelAlumno
+const modelProfesor = mongoose.model('Profesor', profesorSchema);
+module.exports = modelProfesor
 

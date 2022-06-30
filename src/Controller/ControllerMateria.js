@@ -10,7 +10,7 @@ const Registrarmateria = async (req, res) => {
 
     const newMat = await newMateria.save();
 
-    const MT = await modelMateria.findOne({ nombre })//.populate("Evaluacion").populate("Profesor");
+    const MT = await modelMateria.findOne({ nombre }).populate("evaluaciones").populate("profesor");
 
 
     return res.status(200).send(
@@ -21,16 +21,16 @@ const Registrarmateria = async (req, res) => {
 
 const getMateria = async (req, res) => {
 
-    if (!req.body?.filtro) return res.send("No mando la condicion de busqueda")
-    const { filtro } = req.body
 
-    const materia = await modelMateria.findOne(filtro).populate("Evaluacion").populate("Profesor");
+    if (!req.query) return res.send("No mando la condicion de busqueda")
+    const { filtro } = req.query
+    const materia = await modelMateria.findOne(filtro).populate("evaluaciones").populate("profesor");
     return res.status(200).json(
         materia
     );
 }
 const getMaterias = async (req, res) => {
-    const materia = await modelMateria.find()//.populate("Evaluacion").populate("Profesor");
+    const materia = await modelMateria.find().populate("evaluaciones").populate("profesor");
 
     return res.status(200).json(
         materia
