@@ -1,16 +1,22 @@
 const modelEvaluacion = require("../model/ModelEvaluaciones");
+const modelMateria = require("../model/ModelMateria");
 
 
 const RegistrarEvaluacion = async (req, res) => {
 
-    const { descripcion } = req.body
+    const { descripcion, idMateria } = req.body
+
+
 
     const newEvaluacion = new modelEvaluacion({
         descripcion
     })
 
     const newEva = await newEvaluacion.save();
-
+    const materiaById = await modelMateria.findOne({ _id: idMateria })
+    console.log(materiaById);
+    await materiaById.evaluaciones.push(newEva);
+    await materiaById.save()
     // const MT = await modelMateria.findOne({ nombre }).populate("profesor")//.populate("evaluaciones");
 
 

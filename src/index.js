@@ -9,6 +9,7 @@ const routerProfesor = require('./routes/RouteProfesor');
 const routerEvaluacion = require('./routes/RouteEvaluacion');
 const routerCurso = require('./routes/RoutesCurso');
 const routerUser = require('./routes/RouteUser');
+const routerEvaluacionAlumno = require('./routes/RouteEvaluacion-Alumno');
 
 
 
@@ -28,6 +29,7 @@ app.use("/materia", routerMateria);
 app.use("/alumno", routerAlumno);
 app.use("/profesor", routerProfesor);
 app.use("/evaluacion", routerEvaluacion);
+app.use("/evaluacionAlumno", routerEvaluacionAlumno);
 app.use("/curso", routerCurso);
 app.use("/user", routerUser);
 app.get('/', (req, res) => res.send("App Gestion almnos"))

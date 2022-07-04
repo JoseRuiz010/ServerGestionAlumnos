@@ -1,4 +1,5 @@
 const modelAlumno = require("../model/ModelAlumnos");
+const modelCurso = require("../model/ModelCurso");
 
 
 const RegistrarmAlumno = async (req, res) => {
@@ -8,8 +9,13 @@ const RegistrarmAlumno = async (req, res) => {
         telefono,
         email,
         legajo,
-        direccion } = req.body
-
+        direccion, curso } = req.body
+    console.log(nombre,
+        apellido,
+        telefono,
+        email,
+        legajo,
+        direccion, curso);
     const newAlumno = new modelAlumno({
         nombre,
         apellido,
@@ -20,8 +26,11 @@ const RegistrarmAlumno = async (req, res) => {
     })
 
     const newAl = await newAlumno.save();
-
-    console.log(newAl);
+    const cursoById = await modelCurso.findOne({ _id: curso })
+    console.log(cursoById);
+    await cursoById.alumnos.push(newAl);
+    await cursoById.save()
+    console.log(cursoById);
     return res.status(200).send(
         newAl
     );

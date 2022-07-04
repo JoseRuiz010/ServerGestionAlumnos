@@ -21,7 +21,7 @@ const RegistrarUsuario = async (req, res) => {
 
 
 const getUser = async (req, res) => {
-
+    console.log(req.query);
     if (!req.query) return res.send("No mando la condicion de busqueda")
     const filtro = req.query
     const user = await modelUser.findOne(filtro).populate(
@@ -43,7 +43,7 @@ const getUser = async (req, res) => {
                     model: "Materia",
                     populate: {
                         path: "evaluaciones",
-                        model: "Materia",
+                        model: "Evaluacion",
                     }
                 },
 
@@ -74,7 +74,7 @@ const getUsers = async (req, res) => {
                     model: "Materia",
                     populate: {
                         path: "evaluaciones",
-                        model: "Materia",
+                        model: "Evaluacion",
                     }
                 },
 
